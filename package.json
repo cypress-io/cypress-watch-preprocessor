@@ -1,0 +1,60 @@
+{
+  "name": "@cypress/watch-preprocessor",
+  "description": "Simple Cypress preprocessor for watching files",
+  "version": "0.0.1",
+  "author": "Chris Breiding <chris@cypress.io>",
+  "bugs": "https://github.com/cypress-io/cypress-watch-preprocessor/issues",
+  "engines": {
+    "node": ">=6.5"
+  },
+  "files": [
+    "*.js"
+  ],
+  "homepage": "https://github.com/cypress-io/cypress-watch-preprocessor#readme",
+  "keywords": [
+    "cypress",
+    "cypress-plugin",
+    "cypress-preprocessor"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cypress-io/cypress-watch-preprocessor.git"
+  },
+  "scripts": {
+    "ban": "ban",
+    "deps": "deps-ok && dependency-check --no-dev .",
+    "license": "license-checker --production --onlyunknown --csv",
+    "lint": "eslint --fix *.js",
+    "secure": "nsp check",
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
+    "test": "mocha",
+    "test-watch": "chokidar '*.js' 'test/*.js' -c 'npm test'"
+  },
+  "release": {
+    "verifyRelease": {
+      "path": "dont-crack",
+      "test-against": []
+    }
+  },
+  "devDependencies": {
+    "ban-sensitive-files": "1.9.0",
+    "chai": "4.1.2",
+    "chokidar-cli": "1.2.0",
+    "dependency-check": "2.9.1",
+    "deps-ok": "1.2.1",
+    "dont-crack": "1.2.1",
+    "eslint": "4.6.1",
+    "eslint-plugin-cypress-dev": "1.0.0",
+    "eslint-plugin-mocha": "4.11.0",
+    "license-checker": "13.0.3",
+    "mocha": "3.5.0",
+    "mockery": "2.1.0",
+    "nsp": "2.7.0",
+    "sinon": "3.2.1",
+    "sinon-chai": "2.13.0"
+  },
+  "dependencies": {
+    "bluebird": "3.5.0"
+  }
+}
