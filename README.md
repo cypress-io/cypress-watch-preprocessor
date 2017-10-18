@@ -17,8 +17,8 @@ In your project's [plugins file](https://on.cypress.io/guides/guides/plugins.htm
 ```javascript
 const watch = require('@cypress/watch-preprocessor')
 
-module.exports = (register, config) => {
-  register('on:spec:file:preprocessor', watch(config))
+module.exports = (on, config) => {
+  on('file:preprocessor', watch(config))
 }
 ```
 
