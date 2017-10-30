@@ -17,9 +17,23 @@ In your project's [plugins file](https://on.cypress.io/guides/guides/plugins.htm
 ```javascript
 const watch = require('@cypress/watch-preprocessor')
 
-module.exports = (on, config) => {
-  on('file:preprocessor', watch(config))
+module.exports = (on) => {
+  on('file:preprocessor', watch())
 }
+```
+
+## Contributing
+
+Run all tests once:
+
+```shell
+npm test
+```
+
+Run tests in watch mode:
+
+```shell
+npm run test-watch
 ```
 
 ## License
