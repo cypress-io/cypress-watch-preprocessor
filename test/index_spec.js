@@ -22,7 +22,7 @@ describe('watch preprocessor', function () {
 
     sandbox.stub(chokidar, 'watch').returns(this.watcherApi)
 
-    this.config = {
+    this.file = {
       shouldWatch: true,
       filePath: 'path/to/file.js',
       on: sandbox.stub(),
@@ -30,7 +30,7 @@ describe('watch preprocessor', function () {
     }
 
     this.run = () => {
-      return preprocessor(this.options)(this.config)
+      return preprocessor(this.options)(this.file)
     }
   })
 
@@ -42,41 +42,41 @@ describe('watch preprocessor', function () {
 
   describe('preprocessor function', function () {
     afterEach(function () {
-      this.config.on.withArgs('close').yield() // resets the cached watchers
+      this.file.on.withArgs('close').yield() // resets the cached watchers
     })
 
     it('returns filePath', function () {
-      expect(this.run()).to.equal(this.config.filePath)
+      expect(this.run()).to.equal(this.file.filePath)
     })
 
     it('watches when shouldWatch is true', function () {
       this.run()
-      expect(chokidar.watch).to.be.calledWith(this.config.filePath)
+      expect(chokidar.watch).to.be.calledWith(this.file.filePath)
     })
 
     it('returns early if called again with same filePath', function () {
-      const run = preprocessor(this.config)
-      run(this.config)
-      run(this.config)
+      const run = preprocessor(this.file)
+      run(this.file)
+      run(this.file)
       expect(chokidar.watch).to.be.calledOnce
     })
 
     it('emits `rerun` when there is an update', function () {
       this.watcherApi.on.withArgs('all').yields()
       this.run()
-      expect(this.config.emit).to.be.calledWith('rerun')
+      expect(this.file.emit).to.be.calledWith('rerun')
     })
 
     it('closes watcher when onClose callback is called', function () {
       this.run()
-      this.config.on.withArgs('close').yield()
+      this.file.on.withArgs('close').yield()
       expect(this.watcherApi.close).to.be.called
     })
   })
 
   describe('when shouldWatch is false', function () {
     beforeEach(function () {
-      this.config.shouldWatch = false
+      this.file.shouldWatch = false
     })
 
     it('does not watch', function () {

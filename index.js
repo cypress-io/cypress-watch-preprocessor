@@ -4,10 +4,9 @@ const chokidar = require('chokidar')
 
 const watchers = {}
 
-// export a function that returns another function, making it easy for users
-// to configure like so:
+// export a function that returns another function that can be used like so:
 //
-// on('file:preprocessor', watch(config, userOptions))
+// on('file:preprocessor', watch())
 //
 module.exports = () => {
   // we return function that accepts the arguments provided by
@@ -21,15 +20,15 @@ module.exports = () => {
   // when running in the GUI, it will likely get called multiple times
   // with the same filePath, as the user could re-run the tests, causing
   // the supported file and spec file to be requested again
-  return (config) => {
-    const filePath = config.filePath
+  return (file) => {
+    const filePath = file.filePath
 
     // if shouldWatch is false, this is a one-time run, probably in CI
     // so we don't need to watch
     // since this function can get called multiple times with the same
     // filePath, we return if we already have a cached watcher
     // since we don't want or need to re-initiate a watcher for it
-    if (!config.shouldWatch || watchers[filePath]) {
+    if (!file.shouldWatch || watchers[filePath]) {
       return filePath
     }
 
@@ -40,12 +39,12 @@ module.exports = () => {
     // when we're notified of an update, we emit `rerun`
     // to let Cypress know to re-run the spec
     watcher.on('all', () => {
-      config.emit('rerun')
+      file.emit('rerun')
     })
 
     // when the spec or project is closed, we need to close the watcher
     // and remove it from the cache
-    config.on('close', () => {
+    file.on('close', () => {
       delete watchers[filePath]
       watcher.close()
     })
