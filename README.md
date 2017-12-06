@@ -2,6 +2,8 @@
 
 A simple Cypress preprocessor for watching files. Will not change the files at all, but watches for a file to be saved and notifies Cypress to re-run.
 
+Note that while this is a "preprocessor," it does *not* transpile or bundle your files at all. It only watches them. They are served to the browser *as-is*. The browser must support any JavaScript features you use or your tests will not be able to run. If you wish to use more advanced JavaScript features that need to be transpiled, use the default preprocessor or the [webpack preprocessor](https://github.com/cypress-io/cypress-webpack-preprocessor), which transpile, bundle, and watch your spec files.
+
 ## Installation
 
 Requires [Node](https://nodejs.org) version 6.5.0 or above.
