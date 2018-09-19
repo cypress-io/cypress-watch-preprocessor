@@ -14,7 +14,7 @@ npm install --save-dev @cypress/watch-preprocessor
 
 ## Usage
 
-In your project's [plugins file](https://on.cypress.io/guides/guides/plugins.html):
+In your project's [background file](https://on.cypress.io/background-process):
 
 ```javascript
 const watch = require('@cypress/watch-preprocessor')
