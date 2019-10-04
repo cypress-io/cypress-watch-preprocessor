@@ -5,7 +5,7 @@
   "author": "Chris Breiding <chris@cypress.io>",
   "bugs": "https://github.com/cypress-io/cypress-watch-preprocessor/issues",
   "engines": {
-    "node": ">=6.5"
+    "node": ">=8.9.3"
   },
   "files": [
     "*.js"
@@ -32,7 +32,7 @@
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "test": "mocha",
     "test-watch": "chokidar '*.js' 'test/*.js' -c 'npm test'",
-    "semantic-release": "semantic-release pre && npm publish --access public && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@cypress/eslint-plugin-dev": "^4.0.0",
@@ -59,8 +59,5 @@
   },
   "dependencies": {
     "chokidar": "3.1.1"
-  },
-  "release": {
-    "analyzeCommits": "simple-commit-message"
   }
 }
