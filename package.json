@@ -5,7 +5,7 @@
   "author": "Chris Breiding <chris@cypress.io>",
   "bugs": "https://github.com/cypress-io/cypress-watch-preprocessor/issues",
   "engines": {
-    "node": ">=6.5"
+    "node": ">=8.9.3"
   },
   "files": [
     "*.js"
@@ -32,40 +32,32 @@
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "test": "mocha",
     "test-watch": "chokidar '*.js' 'test/*.js' -c 'npm test'",
-    "semantic-release": "semantic-release pre && npm publish --access public && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
-    "ban-sensitive-files": "1.9.0",
-    "chai": "4.1.2",
-    "chokidar-cli": "1.2.0",
-    "condition-circle": "1.5.0",
-    "dependency-check": "2.9.1",
-    "deps-ok": "1.2.1",
+    "@cypress/eslint-plugin-dev": "^4.0.0",
+    "ban-sensitive-files": "1.9.2",
+    "chai": "4.2.0",
+    "chokidar-cli": "2.0.0",
+    "condition-circle": "2.0.2",
+    "dependency-check": "4.1.0",
+    "deps-ok": "1.4.1",
     "dont-crack": "1.2.1",
-    "eslint": "4.6.1",
-    "eslint-plugin-cypress-dev": "^1.1.1",
-    "eslint-plugin-mocha": "4.11.0",
+    "eslint": "6.4.0",
+    "eslint-plugin-json-format": "2.0.1",
+    "eslint-plugin-mocha": "6.1.1",
     "github-post-release": "1.13.1",
-    "husky": "^0.14.3",
-    "license-checker": "13.0.3",
-    "mocha": "3.5.0",
+    "husky": "^3.0.5",
+    "license-checker": "25.0.1",
+    "mocha": "6.2.0",
     "mockery": "2.1.0",
-    "nsp": "2.7.0",
-    "semantic-release": "8.2.0",
-    "simple-commit-message": "3.3.1",
-    "sinon": "3.2.1",
-    "sinon-chai": "2.13.0"
+    "nsp": "3.2.1",
+    "semantic-release": "15.13.24",
+    "simple-commit-message": "4.0.13",
+    "sinon": "7.5.0",
+    "sinon-chai": "3.3.0"
   },
   "dependencies": {
-    "bluebird": "3.5.0"
-  },
-  "release": {
-    "verifyConditions": "condition-circle",
-    "analyzeCommits": "simple-commit-message",
-    "generateNotes": "github-post-release",
-    "verifyRelease": {
-      "path": "dont-crack",
-      "test-against": []
-    }
+    "chokidar": "^3.2.1"
   }
 }
